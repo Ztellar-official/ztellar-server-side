@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(cors({
-    origin:["https://ztellar-client-side.onrender.com"],
+    origin:["https://vizcom.onrender.com"],
     credentials:true
 }));
 
