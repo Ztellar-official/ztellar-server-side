@@ -80,8 +80,8 @@ export const createCheckout = async(req,res,next) => {
         show_description: true,
         show_line_items: true,
         description: 'asdasdasd',
-        line_items: [{currency: 'PHP', amount: 5000, name: 'asdasdasd', quantity: 1}],
-        payment_method_types: ['paymaya']
+        // line_items: [{currency: 'PHP', amount: 5000, name: 'asdasdasd', quantity: 1}],
+        // payment_method_types: ['paymaya']
       }
     }
   }
