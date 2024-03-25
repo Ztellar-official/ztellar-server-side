@@ -87,14 +87,15 @@ export const createCheckout = async(req,res,next) => {
   }
 };
 
-axios
-  .request(options)
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.error(error);
-  });
+    
+try{
+    const asd = await axios.request(options)
+    console.log(asd)
+}catch(err){
+    console.log(err)
+}
+
+
 }
 
 // RETRIEVE CHECKOUT SESSION
