@@ -90,7 +90,7 @@ export const createCheckout = async(req,res,next) => {
     
 try{
     const asd = await axios.request(options)
-    console.log(asd)
+    console.log('SOMETHING IS NOT RIGHT')
 }catch(err){
     console.log(err)
 }
