@@ -62,7 +62,7 @@ export const createCheckout = async(req,res,next) => {
       })
       .catch(function (error) {
           res.status(200).json(error)
-        console.error('SOMETHING WENT WRONG');
+        console.error(error);
     });
 }
 
