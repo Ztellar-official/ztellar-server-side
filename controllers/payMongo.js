@@ -24,46 +24,77 @@ export const createCheckout = async(req,res,next) => {
 
 
 
-    const price = Number(`${req.body.price}00`)
-    const productId = req.body.courseId
-    // PRODUCT ID / OWNER_ID /
-    const description = `${productId}/${req.body.ownerId}/${req.body.type}/${req.body.regType}`;
+    // const price = Number(`${req.body.price}00`)
+    // const productId = req.body.courseId
+    // // PRODUCT ID / OWNER_ID /
+    // const description = `${productId}/${req.body.ownerId}/${req.body.type}/${req.body.regType}`;
+
+    // const options = {
+    //   method: 'POST',
+    //   url: 'https://api.paymongo.com/v1/checkout_sessions',
+    //   headers: {
+    //     accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //     authorization: `Basic ${process.env.PAYMONGO_KEY}`
+    //   },
+    //   data: {
+    //     data: {
+    //       attributes: {
+    //         send_email_receipt: true,
+    //         show_description: true,
+    //         show_line_items: true,
+    //         cancel_url: 'https://youtube.com',
+    //         description: description,
+    //         line_items: [
+    //           {currency: 'PHP', amount:price, description: `10th PSME LRC Conference 2024`, name: `10th PSME LRC 2024 registration - ${req.body.regType}`, quantity: 1}
+    //         ],
+    //         payment_method_types: ["billease","card","dob","dob_ubp","gcash","paymaya"],
+    //         success_url: process.env.MONGOPAY_SUCCESS_URL
+    //       }
+    //     }
+    //   }
+    // };
+    // // PROCEED TO CHECK OUT
+    // axios
+    //   .request(options)
+    //   .then(function (response) {
+    //     return res.status(200).json(response.data.data)
+    //   })
+    //   .catch(function (error) {
+    //       res.status(200).json(error)
+    //     console.error(error);
+    // });
 
     const options = {
-      method: 'POST',
-      url: 'https://api.paymongo.com/v1/checkout_sessions',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-        authorization: `Basic ${process.env.PAYMONGO_KEY}`
-      },
-      data: {
-        data: {
-          attributes: {
-            send_email_receipt: true,
-            show_description: true,
-            show_line_items: true,
-            cancel_url: 'https://youtube.com',
-            description: description,
-            line_items: [
-              {currency: 'PHP', amount:price, description: `10th PSME LRC Conference 2024`, name: `10th PSME LRC 2024 registration - ${req.body.regType}`, quantity: 1}
-            ],
-            payment_method_types: ["billease","card","dob","dob_ubp","gcash","paymaya"],
-            success_url: process.env.MONGOPAY_SUCCESS_URL
-          }
-        }
+  method: 'POST',
+  url: 'https://api.paymongo.com/v1/checkout_sessions',
+  headers: {
+    accept: 'application/json',
+    'Content-Type': 'application/json',
+    authorization: 'Basic c2tfdGVzdF9acGg1TDV2TWZRSGVIMnhZWmFKcE5Ldzg6'
+  },
+  data: {
+    data: {
+      attributes: {
+        send_email_receipt: false,
+        show_description: true,
+        show_line_items: true,
+        description: 'asdasdasd',
+        line_items: [{currency: 'PHP', amount: 5000, name: 'asdasdasd', quantity: 1}],
+        payment_method_types: ['paymaya']
       }
-    };
-    // PROCEED TO CHECK OUT
-    axios
-      .request(options)
-      .then(function (response) {
-        return res.status(200).json(response.data.data)
-      })
-      .catch(function (error) {
-          res.status(200).json(error)
-        console.error(error);
-    });
+    }
+  }
+};
+
+axios
+  .request(options)
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
 }
 
 // RETRIEVE CHECKOUT SESSION
